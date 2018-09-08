@@ -2,6 +2,12 @@
 
 console.log('App.js is running!');
 
+var app = {
+    title: 'Indecision app',
+    subtitle: 'We will choose your destiny',
+    options: ['One', 'Two']
+};
+
 // JSX - JavaScript XML
 var template = React.createElement(
     'div',
@@ -9,12 +15,17 @@ var template = React.createElement(
     React.createElement(
         'h1',
         null,
-        'Indecision App'
+        app.title
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        app.subtitle
     ),
     React.createElement(
         'p',
         null,
-        'This is some paragraph'
+        app.options && app.options.length > 0 ? 'Here are your options' : 'You have no options'
     ),
     React.createElement(
         'ol',
@@ -32,23 +43,40 @@ var template = React.createElement(
     )
 );
 
+var count = 0;
+var addOne = function addOne() {
+    console.log('addOne');
+};
+var minusOne = function minusOne() {
+    console.log('minusOne');
+};
+var reset = function reset() {
+    console.log('reset');
+};
+
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Eric Scaglioni'
+        'Count: ',
+        count
     ),
     React.createElement(
-        'p',
-        null,
-        'Age: 27'
+        'button',
+        { onClick: addOne },
+        '+1'
     ),
     React.createElement(
-        'p',
-        null,
-        'Location: Brazil'
+        'button',
+        { onClick: minusOne },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        'Reset'
     )
 );
 
