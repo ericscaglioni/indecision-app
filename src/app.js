@@ -38,13 +38,20 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    handleRemoveAll() {
+        alert('handleRemoveAll')
+    }
+
     render() {
         return (
-            <ol>
-                {
-                    this.props.options.map((option) => <Option key={option} optionText={option}/>)
-                }
-            </ol>
+            <div>
+                <button onClick={this.handleRemoveAll}>Remove all</button>
+                <ol>
+                    {
+                        this.props.options.map((option) => <Option key={option} optionText={option}/>)
+                    }
+                </ol>
+            </div>
         );
     }
 }
@@ -58,9 +65,17 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+
+        const option = e.target.elements.option.value.trim();
+        if(option) {
+            alert(option);
+        }
+    }
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleAddOption}>
                 <input type="text" name="option" />
                 <button>Add Option</button>
             </form>

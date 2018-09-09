@@ -109,14 +109,28 @@ var Options = function (_React$Component4) {
     }
 
     _createClass(Options, [{
+        key: 'handleRemoveAll',
+        value: function handleRemoveAll() {
+            alert('handleRemoveAll');
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
-                'ol',
+                'div',
                 null,
-                this.props.options.map(function (option) {
-                    return React.createElement(Option, { key: option, optionText: option });
-                })
+                React.createElement(
+                    'button',
+                    { onClick: this.handleRemoveAll },
+                    'Remove all'
+                ),
+                React.createElement(
+                    'ol',
+                    null,
+                    this.props.options.map(function (option) {
+                        return React.createElement(Option, { key: option, optionText: option });
+                    })
+                )
             );
         }
     }]);
@@ -157,11 +171,21 @@ var AddOption = function (_React$Component6) {
     }
 
     _createClass(AddOption, [{
+        key: 'handleAddOption',
+        value: function handleAddOption(e) {
+            e.preventDefault();
+
+            var option = e.target.elements.option.value.trim();
+            if (option) {
+                alert(option);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'form',
-                null,
+                { onSubmit: this.handleAddOption },
                 React.createElement('input', { type: 'text', name: 'option' }),
                 React.createElement(
                     'button',
